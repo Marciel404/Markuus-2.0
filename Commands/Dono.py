@@ -74,5 +74,18 @@ class Dono(commands.Cog):
 
             await update_bank(user, - dindin)
 
+    
+async def tck(self):
+
+    guild = self.bot.get_guild(941049837707722753)
+
+    e = discord.Embed(title = 'Ticket', description = 'Clique no 📩 para\nabrir um ticket')
+
+    channel = discord.utils.get(guild.channels, name = '📩・suporte')
+
+    await channel.purge(limit=1)
+
+    await channel.send(embed = e, view = ticket())
+
 def setup(bot:commands.Bot):
     bot.add_cog(Dono(bot))
