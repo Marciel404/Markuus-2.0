@@ -98,8 +98,14 @@ class Atendimento(commands.Cog):
         elif ctx.author.id == banip:
 
             return
+        
+        if ctx.channel.name != 'ticket-':
 
-        if f'ticket-{ctx.author.id}' in ctx.channel.name or ctx.author.guild_permissions.manage_channels:
+            await ctx.reply('Esse não é um chat de ticket para adicionar alguem')
+
+            return
+
+        elif f'ticket-{ctx.author.id}' in ctx.channel.name or ctx.author.guild_permissions.manage_channels:
 
             await ctx.channel.set_permissions(id, read_messages=True)
 
@@ -122,7 +128,13 @@ class Atendimento(commands.Cog):
 
             return
 
-        if f'ticket-{ctx.author.id}' in ctx.channel.name or ctx.author.guild_permissions.manage_channels:
+        if ctx.channel.name != 'ticket-':
+
+            await ctx.reply('Esse não é um chat de ticket para remover alguem')
+
+            return
+
+        elif f'ticket-{ctx.author.id}' in ctx.channel.name or ctx.author.guild_permissions.manage_channels:
 
             await ctx.channel.set_permissions(membro, read_messages=False)
 
